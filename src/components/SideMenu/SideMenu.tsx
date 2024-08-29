@@ -50,18 +50,26 @@ const closedMixin = (theme: Theme): CSSObject => ({
 
 const menuRouteList = ["", "data", "profile", "settings", ""];
 const menuListTranslations = [
-  "Home",
-  "Data",
-  "Profile",
-  "Settings",
-  "Sign Out",
-];
-const menuListIcons = [
-  <HomeIcon />,
-  <EqualizerIcon />,
-  <Person2Icon />,
-  <Settings />,
-  <ExitToAppIcon />,
+  {
+    title: "Home",
+    icon: <HomeIcon />,
+  },
+  {
+    title: "Data",
+    icon: <EqualizerIcon />,
+  },
+  {
+    title: "Profile",
+    icon: <Person2Icon />,
+  },
+  {
+    title: "Settings",
+    icon: <Settings />,
+  },
+  {
+    title: "Sign Out",
+    icon: <ExitToAppIcon />,
+  },
 ];
 
 const SideMenu = () => {
@@ -115,16 +123,20 @@ const SideMenu = () => {
       <Divider />
       <Divider />
       <List>
-        {menuListTranslations.map((text, index) => (
-          <ListItem key={text} disablePadding sx={{ display: "block" }}>
+        {menuListTranslations.map((menuItem, index) => (
+          <ListItem
+            key={menuItem.title}
+            disablePadding
+            sx={{ display: "block" }}
+          >
             <NextLink
               className={scss.link}
               href={`/dashboard/${menuRouteList[index]}`}
             >
               <ListItemButton
-                onClick={() => handleListItemButtonClick(text)}
-                title={text}
-                aria-label={text}
+                onClick={() => handleListItemButtonClick(menuItem.title)}
+                title={menuItem.title}
+                aria-label={menuItem.title}
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
@@ -138,10 +150,10 @@ const SideMenu = () => {
                     justifyContent: "center",
                   }}
                 >
-                  {menuListIcons[index]}
+                  {menuItem.icon}
                 </ListItemIcon>
                 <ListItemText
-                  primary={text}
+                  primary={menuItem.title}
                   sx={{
                     color: theme.palette.text.primary,
                     opacity: open ? 1 : 0,
