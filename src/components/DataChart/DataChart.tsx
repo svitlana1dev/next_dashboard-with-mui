@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Chart, ChartConfiguration, registerables } from "chart.js/dist/types";
+import { Chart, ChartConfiguration, registerables } from "chart.js";
 import { months } from "../../helper/Util";
 import { darkOptions } from "./Themes";
 
