@@ -1,4 +1,4 @@
-import { months } from "@/helper/Util";
+import { months } from "../helper/Util";
 
 export const lineChartData = {
   labels: months({ count: 12 }),
