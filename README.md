@@ -1,4 +1,4 @@
-Next.js dashboard application with TypeScript and MUI [VIEW DEMO](next-dashboard-with-mui.vercel.app/)
+Next.js dashboard application with TypeScript and MUI [VIEW DEMO](https://next-dashboard-with-mui.vercel.app/)
 
 #### Getting Started
 
