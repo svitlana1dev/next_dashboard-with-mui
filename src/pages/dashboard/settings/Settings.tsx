@@ -11,25 +11,20 @@ import {
 } from "@mui/material";
 
 const Settings = () => {
-  const [showRevenue, setShowRevenue] = useState(true);
-  const [showProfit, setShowProfit] = useState(true);
-  const [showOrders, setShowOrders] = useState(true);
-  const [showCustomers, setShowCustomers] = useState(true);
+  const [settingsState, setSettingsState] = useState<{
+    [key: string]: boolean;
+  }>({
+    revenue: true,
+    profit: true,
+    orders: true,
+    customers: true,
+  });
 
-  const handleShowRevenueChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setShowRevenue(event.target.checked);
-  };
-
-  const handleShowProfitChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setShowProfit(event.target.checked);
-  };
-
-  const handleShowOrdersChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setShowOrders(event.target.checked);
-  };
-
-  const handleShowCustomersChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setShowCustomers(event.target.checked);
+  const handleOnChange = (key: string) => {
+    setSettingsState((prevState) => ({
+      ...prevState,
+      [key]: !prevState[key],
+    }));
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -47,42 +42,18 @@ const Settings = () => {
             <Grid item xs={12}>
               <FormControl component="fieldset">
                 <FormGroup>
-                  <FormControlLabel
-                    control={
-                      <Switch
-                        checked={showRevenue}
-                        onChange={handleShowRevenueChange}
-                      />
-                    }
-                    label="Revenue"
-                  />
-                  <FormControlLabel
-                    control={
-                      <Switch
-                        checked={showProfit}
-                        onChange={handleShowProfitChange}
-                      />
-                    }
-                    label="Profit"
-                  />
-                  <FormControlLabel
-                    control={
-                      <Switch
-                        checked={showOrders}
-                        onChange={handleShowOrdersChange}
-                      />
-                    }
-                    label="Orders"
-                  />
-                  <FormControlLabel
-                    control={
-                      <Switch
-                        checked={showCustomers}
-                        onChange={handleShowCustomersChange}
-                      />
-                    }
-                    label="Customers"
-                  />
+                  {Object.keys(settingsState).map((key) => (
+                    <FormControlLabel
+                      key={key}
+                      control={
+                        <Switch
+                          checked={settingsState[key]}
+                          onChange={() => handleOnChange(key)}
+                        />
+                      }
+                      label={key}
+                    />
+                  ))}
                 </FormGroup>
               </FormControl>
             </Grid>
