@@ -44,6 +44,7 @@ const Header = (props: HeaderProps) => {
   };
 
   const tabletCheck = useMediaQuery("(min-width: 768px)");
+  const handleSingToggler = () => (session ? signOut() : signIn());
 
   return (
     <AppBar position="static" sx={{ marginBottom: "40px" }}>
@@ -128,7 +129,7 @@ const Header = (props: HeaderProps) => {
                   <Typography textAlign="center">Profile</Typography>
                 </NextLink>
               </MenuItem>
-              <MenuItem onClick={() => (session ? signOut() : signIn())}>
+              <MenuItem onClick={handleSingToggler}>
                 <Typography textAlign="center">
                   {session ? "Logout" : "Login"}
                 </Typography>

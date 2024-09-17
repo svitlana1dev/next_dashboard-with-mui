@@ -13,6 +13,8 @@ const Footer = () => {
     color: ${theme.palette.text.primary};
   `;
 
+  const handleSingToggler = () => (session ? signOut() : signIn());
+
   return (
     <footer className={scss.footer}>
       <Paper sx={{ width: "100%" }} color={"#262626"}>
@@ -43,7 +45,7 @@ const Footer = () => {
             <Button
               variant={"text"}
               color={session ? "error" : "success"}
-              onClick={() => (session ? signOut() : signIn())}
+              onClick={handleSingToggler}
             >
               {session ? "Sign Out" : "Sign In"}
             </Button>
